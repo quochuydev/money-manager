@@ -92,7 +92,8 @@ export class Records extends React.Component {
       <div>
         <Table rowKey='day' dataSource={this.props.propRecords} columns={this.cols} size={'small'}
           pagination={false} scroll={{ x: '100%' }} showHeader={false}
-          defaultExpandAllRows={true} expandIconColumnIndex={-1}
+          // expandIconColumnIndex={-1}
+          defaultExpandAllRows={true}
           expandedRowRender={record => <Table rowKey='key' columns={this.subColumns} 
           dataSource={record.days} pagination={false} showHeader={false} />} />
       </div>
