@@ -13,18 +13,19 @@ import {
 import * as classes from "./Record.module.scss";
 import { connect } from "react-redux";
 import * as actions from "../../../store/record/actions";
-import { types } from "./types";
+import { types } from "../types";
 import NumberFormat from "react-number-format";
 import moment from "moment";
 
 function Record(props) {
   const formRef = React.createRef();
   const user = JSON.parse(localStorage.getItem("auth"));
-  const [record, setRecord] = useState({
+  const initRecord = {
     amount: 0,
     time: new Date(),
     type: null,
-  });
+  }
+  const [record, setRecord] = useState(initRecord);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
@@ -71,7 +72,7 @@ function Record(props) {
   };
 
   const onReset = () => {
-    formRef.current.resetFields();
+    setRecord(initRecord)
   };
 
   return (
@@ -104,6 +105,7 @@ function Record(props) {
             />
             <br />
             <DatePicker
+              className="m-t-md"
               name="time"
               onChange={(e) => setRecord({ ...record, time: new Date(e) })}
               defaultValue={
@@ -112,6 +114,7 @@ function Record(props) {
             />
             <br />
             <Select
+              className="m-t-md"
               label="Type"
               name="type"
               placeholder="Type"
@@ -127,6 +130,7 @@ function Record(props) {
             </Select>
             <br />
             <Button
+              className="m-t-md"
               type="primary"
               htmlType="submit"
               disabled={loading}

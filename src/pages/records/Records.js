@@ -5,15 +5,11 @@ import * as classes from "./Records.module.scss";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/record/actions";
+import { types } from './types'
 
 export class Records extends React.Component {
   user = JSON.parse(localStorage.getItem("auth"));
   cols = [
-    /* {
-            title: 'Id',
-            dataIndex: 'id',
-            key: 'id'
-        }, */
     {
       title: "Amount",
       dataIndex: "amount",
@@ -88,7 +84,6 @@ export class Records extends React.Component {
 
   navigate = () => {
     const pathname = "/records/record";
-    console.log(pathname);
     this.props.history.push({ pathname });
   };
 
@@ -99,21 +94,11 @@ export class Records extends React.Component {
   render() {
     return (
       <div>
-        <Button
-          onClick={this.navigate}
-          icon={<UserAddOutlined />}
-          style={{ float: "right" }}
-          type="primary"
-        >
-          Register Record
-        </Button>
-        <br />
-        {/* <h3>Records</h3> */}
-        {/* <Table columns={this.cols} dataSource={this.state.records} bordered></Table> */}
         <Table
           columns={this.cols}
           dataSource={this.props.propRecords}
           bordered
+          scroll={{ x: '100%' }}
         ></Table>
       </div>
     );
