@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/money-manager/static/css/main.2120f630.chunk.css",
+    "main.js": "/money-manager/static/js/main.9a5c885d.chunk.js",
+    "main.js.map": "/money-manager/static/js/main.9a5c885d.chunk.js.map",
+    "runtime-main.js": "/money-manager/static/js/runtime-main.b075b75a.js",
+    "runtime-main.js.map": "/money-manager/static/js/runtime-main.b075b75a.js.map",
+    "static/css/2.1e58ee36.chunk.css": "/money-manager/static/css/2.1e58ee36.chunk.css",
+    "static/js/2.262782cd.chunk.js": "/money-manager/static/js/2.262782cd.chunk.js",
+    "static/js/2.262782cd.chunk.js.map": "/money-manager/static/js/2.262782cd.chunk.js.map",
+    "index.html": "/money-manager/index.html",
+    "static/css/2.1e58ee36.chunk.css.map": "/money-manager/static/css/2.1e58ee36.chunk.css.map",
+    "static/css/main.2120f630.chunk.css.map": "/money-manager/static/css/main.2120f630.chunk.css.map",
+    "static/js/2.262782cd.chunk.js.LICENSE.txt": "/money-manager/static/js/2.262782cd.chunk.js.LICENSE.txt",
+    "static/media/logo.2d27ead7.svg": "/money-manager/static/media/logo.2d27ead7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b075b75a.js",
+    "static/css/2.1e58ee36.chunk.css",
+    "static/js/2.262782cd.chunk.js",
+    "static/css/main.2120f630.chunk.css",
+    "static/js/main.9a5c885d.chunk.js"
+  ]
+}
