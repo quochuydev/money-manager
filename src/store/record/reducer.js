@@ -9,24 +9,24 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   // console.log(state, action);
   switch (action.type) {
-    case actions.GET_STUDENTS:
+    case actions.GET_RECORDS:
       return {
         ...state,
         records: action.records,
         error: action.error,
       };
-    case actions.ADD_STUDENT:
+    case actions.ADD_RECORD:
       return {
         ...state,
         record: action.record,
       };
-    case actions.UPDATE_STUDENT:
+    case actions.UPDATE_RECORD:
       return {
         ...state,
         record: action.record,
         error: action.error,
       };
-    case actions.DELETE_STUDENT:
+    case actions.DELETE_RECORD:
       console.log(action);
       return {
         ...state,

@@ -78,15 +78,7 @@ function Record(props) {
   return (
     <Row className={classes.FormContainer}>
       <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-        <Card
-          title="Record Registration Form"
-          bordered={true}
-          className={classes.Form}
-        >
-          {/* ERROR  MESSAGE*/}
           {error && msg}
-
-          {/* FORM */}
           <Form
             name="basic"
             ref={formRef}
@@ -94,7 +86,7 @@ function Record(props) {
             onFinish={onFinish}
           >
             <NumberFormat
-              className="ant-input"
+              className="ant-input w-full"
               thousandSeparator={true}
               suffix={"đ"}
               style={{ textAlign: "right" }}
@@ -105,7 +97,7 @@ function Record(props) {
             />
             <br />
             <DatePicker
-              className="m-t-md"
+              className="m-t-md w-full"
               name="time"
               onChange={(e) => setRecord({ ...record, time: new Date(e) })}
               defaultValue={
@@ -114,7 +106,7 @@ function Record(props) {
             />
             <br />
             <Select
-              className="m-t-md"
+              className="m-t-md w-full"
               label="Type"
               name="type"
               placeholder="Type"
@@ -138,16 +130,7 @@ function Record(props) {
             >
               {loading ? "Saving.." : "Submit"}
             </Button>
-            <Button
-              type="secondary"
-              htmlType="button"
-              style={{ marginLeft: "10px" }}
-              onClick={onReset}
-            >
-              Reset
-            </Button>
           </Form>
-        </Card>
       </Col>
     </Row>
   );

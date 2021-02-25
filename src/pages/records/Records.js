@@ -45,9 +45,7 @@ export class Records extends React.Component {
           </Button>
           <Popconfirm
             title="Are you sure you want to delete?"
-            // onConfirm={() => this.onDelete(record)}
             onConfirm={() => this.props.onDelete(record)}
-            // onCancel={}
             okText="Delete"
             cancelText="No"
           >
@@ -106,8 +104,42 @@ export class Records extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  function thisYear() {
+    return new Date().getFullYear()
+  }
+
+  function thisMonth() {
+    var d = new Date();
+    var n = d.getMonth();
+    return n + 1;
+  }
+
+  const records = state.records
+  console.log(records)
+  let res = {};
+  
+  let fn = (year, month, o = res, array = records) => {
+    o[year][month] = {
+      [month]: array.filter(({createdAt: d}) => `${year}-${month}` === d.slice(0, 7))
+    };
+  }
+  
+  for (let {createdAt} of records) {
+    let [year, month] = createdAt.match(/\d+/g);
+    if (!res[year]) res[year] = {};
+    fn(year, month)
+  }
+  
+  console.log(res[thisYear()]);
+
+for (const [key, value] of Object.entries(res)) {
+  console.log(`${key}: ${value}`);
+  
+}
+
+  const propRecords = []
   return {
-    propRecords: state.records,
+    propRecords,
     propError: state.error,
   };
 };

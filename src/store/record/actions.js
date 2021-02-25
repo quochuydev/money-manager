@@ -2,14 +2,14 @@ import axios from "axios";
 import { API_URL } from "../../config";
 import { message } from "antd";
 
-export const ADD_STUDENT = "ADD_STUDENT";
-export const GET_STUDENTS = "GET_STUDENTS";
-export const DELETE_STUDENT = "DELETE_STUDENT";
-export const UPDATE_STUDENT = "UPDATE_STUDENT";
+export const ADD_RECORD = "ADD_RECORD";
+export const GET_RECORDS = "GET_RECORDS";
+export const DELETE_RECORD = "DELETE_RECORD";
+export const UPDATE_RECORD = "UPDATE_RECORD";
 
 export const returnRecords = (records, error) => {
   return {
-    type: GET_STUDENTS,
+    type: GET_RECORDS,
     records: records,
     error: error,
   };
@@ -17,7 +17,7 @@ export const returnRecords = (records, error) => {
 
 export const returnRecord = (record, error) => {
   return {
-    type: UPDATE_STUDENT,
+    type: UPDATE_RECORD,
     record: record,
     error: error,
   };
@@ -112,13 +112,13 @@ export const deleteRecord = (record) => {
       .then((response) => {
         // console.log(response);
 
-        // FILTER THE STUDENT LIST ONCE RECORD DELETED
+        // FILTER THE RECORD LIST ONCE RECORD DELETED
         let records = getState().records.filter((stud) => {
           return stud.key !== record.key;
         });
         dispatch(returnRecords(records, false));
 
-        // GET STUDENTS FROM SERVER
+        // GET RECORDS FROM SERVER
         // dispatch(getRecords());
 
         message.success("Record record deleted.");
