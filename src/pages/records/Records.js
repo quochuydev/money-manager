@@ -11,50 +11,39 @@ export class Records extends React.Component {
   user = JSON.parse(localStorage.getItem("auth"));
   cols = [
     {
-      title: "Amount",
-      dataIndex: "amount",
-      key: "amount",
+      title: "month",
+      dataIndex: "month",
+      key: "month",
     },
+  ];
+  
+  subColumns = [
     {
       title: "type",
       dataIndex: "type",
       key: "type",
-    },
-    {
-      title: "time",
-      dataIndex: "time",
-      key: "time",
-    },
-    {
-      title: "createdAt",
-      dataIndex: "createdAt",
-      key: "createdAt",
-    },
-    {
-      title: "Action",
-      dataIndex: "id",
-      key: "x",
       render: (text, record) => (
-        <Space>
-          <Button
-            htmlType="button"
-            type="primary"
-            onClick={() => this.onEdit(record)}
-          >
-            Edit
-          </Button>
-          <Popconfirm
+        <>
+          <span onClick={() => this.onEdit(record)} >
+            {record.type}
+          </span>
+          {/* <Popconfirm
             title="Are you sure you want to delete?"
             onConfirm={() => this.props.onDelete(record)}
             okText="Delete"
             cancelText="No"
           >
             <Button className={classes.BtnDelete}>Delete</Button>
-          </Popconfirm>
-        </Space>
+          </Popconfirm> */}
+        </>
       ),
     },
-  ];
+    {
+      title: "Amount",
+      dataIndex: "amount",
+      key: "amount",
+    },
+  ]
 
   constructor(props) {
     super(props);
@@ -67,7 +56,6 @@ export class Records extends React.Component {
   }
 
   onEdit = (record) => {
-    console.log("onEdit", record);
     this.props.history.push({
       pathname: "/records/record",
       state: {
@@ -86,18 +74,16 @@ export class Records extends React.Component {
   };
 
   componentDidUpdate() {
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   render() {
     return (
       <div>
-        <Table
-          columns={this.cols}
-          dataSource={this.props.propRecords}
-          bordered
-          scroll={{ x: '100%' }}
-        ></Table>
+        <Table rowKey='month' dataSource={this.props.propRecords} columns={this.cols} size={'small'}
+          pagination={false} scroll={{ x: '100%' }} showHeader={false}
+          expandedRowRender={record => <Table rowKey='key' columns={this.subColumns}
+          dataSource={record.days} pagination={false} showHeader={false} />} />
       </div>
     );
   }
@@ -115,29 +101,30 @@ const mapStateToProps = (state) => {
   }
 
   const records = state.records
-  console.log(records)
+
   let res = {};
   
   let fn = (year, month, o = res, array = records) => {
-    o[year][month] = {
-      [month]: array.filter(({createdAt: d}) => `${year}-${month}` === d.slice(0, 7))
-    };
+    o[month] = array.filter(({createdAt: d}) => {
+
+      return d ? `${year}-${month}` === d.slice(5, 10) : false
+    }) // 0 7
   }
   
   for (let {createdAt} of records) {
-    let [year, month] = createdAt.match(/\d+/g);
-    if (!res[year]) res[year] = {};
-    fn(year, month)
+    if(createdAt) {
+      let [year, month, day] = createdAt.match(/\d+/g);
+      if (!res) res = {};
+      fn(month, day)
+    }
   }
   
-  console.log(res[thisYear()]);
-
-for (const [key, value] of Object.entries(res)) {
-  console.log(`${key}: ${value}`);
-  
-}
-
   const propRecords = []
+  for (const [key, value] of Object.entries(res)) {
+    propRecords.push({ month: key, days: value })
+  }
+  console.log(propRecords);
+
   return {
     propRecords,
     propError: state.error,

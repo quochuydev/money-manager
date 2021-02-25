@@ -25,12 +25,12 @@ function Record(props) {
     time: new Date(),
     type: null,
   }
-  const [record, setRecord] = useState(initRecord);
+  const [record, setRecord] = useState(props.location.state?.record || initRecord);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
-  console.log(props.propRecord, loading);
+  // console.log(props.location.state.record, loading);
   useEffect(() => {
     if (props.propError) {
       setLoading(false);
