@@ -2,6 +2,7 @@ import React from "react";
 import { Table, Space, Button, Popconfirm } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
 import * as classes from "./Records.module.scss";
+import moment from "moment";
 
 import { connect } from "react-redux";
 import * as actions from "../../store/record/actions";
@@ -11,9 +12,13 @@ export class Records extends React.Component {
   user = JSON.parse(localStorage.getItem("auth"));
   cols = [
     {
-      title: "month",
-      dataIndex: "month",
-      key: "month",
+      title: "day",
+      key: "day",
+      render: (text, record) => (
+        <span>
+          {record && record['days'][0] && record['days'][0]['createdAt'] ? moment(record['days'][0]['createdAt']).format('DD-MM-YYYY') : null}
+        </span>
+      ),
     },
   ];
   
@@ -25,7 +30,7 @@ export class Records extends React.Component {
       render: (text, record) => (
         <>
           <span onClick={() => this.onEdit(record)} >
-            {record.type}
+            {types.find(e => e.id == record.type) ? types.find(e => e.id == record.type)['name'] : null}
           </span>
           {/* <Popconfirm
             title="Are you sure you want to delete?"
@@ -42,6 +47,11 @@ export class Records extends React.Component {
       title: "Amount",
       dataIndex: "amount",
       key: "amount",
+      render: (text, record) => (
+        <span onClick={() => this.onEdit(record)} >
+          {record.amount}
+        </span>
+      ),
     },
   ]
 
@@ -80,9 +90,10 @@ export class Records extends React.Component {
   render() {
     return (
       <div>
-        <Table rowKey='month' dataSource={this.props.propRecords} columns={this.cols} size={'small'}
+        <Table rowKey='day' dataSource={this.props.propRecords} columns={this.cols} size={'small'}
           pagination={false} scroll={{ x: '100%' }} showHeader={false}
-          expandedRowRender={record => <Table rowKey='key' columns={this.subColumns}
+          defaultExpandAllRows={true} expandIconColumnIndex={-1}
+          expandedRowRender={record => <Table rowKey='key' columns={this.subColumns} 
           dataSource={record.days} pagination={false} showHeader={false} />} />
       </div>
     );
@@ -106,7 +117,6 @@ const mapStateToProps = (state) => {
   
   let fn = (year, month, o = res, array = records) => {
     o[month] = array.filter(({createdAt: d}) => {
-
       return d ? `${year}-${month}` === d.slice(5, 10) : false
     }) // 0 7
   }
@@ -121,7 +131,7 @@ const mapStateToProps = (state) => {
   
   const propRecords = []
   for (const [key, value] of Object.entries(res)) {
-    propRecords.push({ month: key, days: value })
+    propRecords.push({ day: key, days: value })
   }
   console.log(propRecords);
 

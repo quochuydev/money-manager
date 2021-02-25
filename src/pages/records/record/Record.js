@@ -96,15 +96,6 @@ function Record(props) {
               }}
             />
             <br />
-            <DatePicker
-              className="m-t-md w-full"
-              name="time"
-              onChange={(e) => setRecord({ ...record, time: new Date(e) })}
-              defaultValue={
-                record.time ? moment(record.time, "YYYY-MM-DD") : null
-              }
-            />
-            <br />
             <Select
               className="m-t-md w-full"
               label="Type"
@@ -120,6 +111,15 @@ function Record(props) {
                 </Select.Option>
               ))}
             </Select>
+            <br />
+            <DatePicker
+              className="m-t-md w-full"
+              name="time"
+              onChange={(e) => setRecord({ ...record, time: new Date(e) })}
+              defaultValue={
+                record.time ? moment(record.time, "YYYY-MM-DD") : null
+              }
+            />
             <br />
             <Button
               className="m-t-md"
