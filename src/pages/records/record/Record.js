@@ -14,8 +14,8 @@ import * as classes from "./Record.module.scss";
 import { connect } from "react-redux";
 import * as actions from "../../../store/record/actions";
 import { types } from "../types";
-import NumberFormat from "react-number-format";
 import moment from "moment";
+import NumberFormat from "react-number-format";
 
 function Record(props) {
   const formRef = React.createRef();
@@ -101,6 +101,7 @@ function Record(props) {
               label="Type"
               name="type"
               placeholder="Type"
+              value={record.type}
               onChange={(e) => {
                 setRecord({ ...record, type: e });
               }}

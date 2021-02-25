@@ -8,6 +8,15 @@ import { connect } from "react-redux";
 import * as actions from "../../store/record/actions";
 import { types } from './types'
 
+import NumberFormat from "react-number-format";
+
+function formatMoney(value) {
+  if (!value) {
+    value = 0;
+  }
+  return <NumberFormat value={value} displayType={'text'} suffix={' đ'} thousandSeparator={true} />
+}
+
 export class Records extends React.Component {
   user = JSON.parse(localStorage.getItem("auth"));
   cols = [
@@ -16,7 +25,7 @@ export class Records extends React.Component {
       key: "day",
       render: (text, record) => (
         <span>
-          {record && record['days'][0] && record['days'][0]['createdAt'] ? moment(record['days'][0]['createdAt']).format('DD-MM-YYYY') : null}
+          {record && record['days'][0] && record['days'][0]['time'] ? moment(record['days'][0]['time']).format('DD-MM-YYYY') : null}
         </span>
       ),
     },
@@ -48,8 +57,8 @@ export class Records extends React.Component {
       dataIndex: "amount",
       key: "amount",
       render: (text, record) => (
-        <span onClick={() => this.onEdit(record)} >
-          {record.amount}
+        <span className="float-right" onClick={() => this.onEdit(record)} >
+          {formatMoney(record.amount)}
         </span>
       ),
     },
@@ -117,14 +126,14 @@ const mapStateToProps = (state) => {
   let res = {};
   
   let fn = (year, month, o = res, array = records) => {
-    o[month] = array.filter(({createdAt: d}) => {
+    o[month] = array.filter(({time: d}) => {
       return d ? `${year}-${month}` === d.slice(5, 10) : false
     }) // 0 7
   }
   
-  for (let {createdAt} of records) {
-    if(createdAt) {
-      let [year, month, day] = createdAt.match(/\d+/g);
+  for (let {time} of records) {
+    if(time) {
+      let [year, month, day] = time.match(/\d+/g);
       if (!res) res = {};
       fn(month, day)
     }
