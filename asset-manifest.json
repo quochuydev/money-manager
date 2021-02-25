@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/money-manager/static/css/main.2120f630.chunk.css",
-    "main.js": "/money-manager/static/js/main.9a5c885d.chunk.js",
-    "main.js.map": "/money-manager/static/js/main.9a5c885d.chunk.js.map",
+    "main.js": "/money-manager/static/js/main.9caca885.chunk.js",
+    "main.js.map": "/money-manager/static/js/main.9caca885.chunk.js.map",
     "runtime-main.js": "/money-manager/static/js/runtime-main.b075b75a.js",
     "runtime-main.js.map": "/money-manager/static/js/runtime-main.b075b75a.js.map",
     "static/css/2.1e58ee36.chunk.css": "/money-manager/static/css/2.1e58ee36.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.1e58ee36.chunk.css",
     "static/js/2.262782cd.chunk.js",
     "static/css/main.2120f630.chunk.css",
-    "static/js/main.9a5c885d.chunk.js"
+    "static/js/main.9caca885.chunk.js"
   ]
 }
