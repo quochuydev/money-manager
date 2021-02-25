@@ -1,155 +1,152 @@
-import React from "react";
-import { Card, Form, Input, Button, Select, Row, Col, message } from "antd";
+import React, { useEffect, useState } from "react";
+import {
+  Card,
+  Form,
+  Input,
+  Button,
+  Select,
+  Row,
+  Col,
+  message,
+  DatePicker,
+} from "antd";
 import * as classes from "./Record.module.scss";
 import { connect } from "react-redux";
 import * as actions from "../../../store/record/actions";
+import { types } from "./types";
+import NumberFormat from "react-number-format";
+import moment from "moment";
 
-class Record extends React.Component {
-  formRef = React.createRef();
-  user = JSON.parse(localStorage.getItem("auth"));
-  state = {
-    error: false,
-    loading: false,
-    message: "",
+function Record(props) {
+  const formRef = React.createRef();
+  const user = JSON.parse(localStorage.getItem("auth"));
+  const [record, setRecord] = useState({
+    amount: 0,
+    time: new Date(),
+    type: null,
+  });
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  console.log(props.propRecord, loading);
+  useEffect(() => {
+    if (props.propError) {
+      setLoading(false);
+      message.error("Something went wrong. Unable to save record information.");
+    }
+  }, [props.propError]);
+
+  useEffect(() => {
+    if (props.propRecord && loading) {
+      setLoading(false);
+      props.history.push({ pathname: "/records" });
+    }
+  }, [props.propRecord]);
+
+  const onFinish = () => {
+    console.log("onFinish data : ", record);
+    console.log("props.location.state : ", props.location.state);
+    if (
+      props.location.state &&
+      props.location.state.record &&
+      props.location.state.record.key
+    ) {
+      setLoading(true);
+      props.onUpdate({
+        ...record,
+        updatedAt: new Date(),
+        key: props.location.state.record.key,
+      });
+    } else {
+      setLoading(true);
+      props.onCreate({
+        ...record,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        deletedAt: null,
+      });
+      setLoading(true);
+    }
   };
 
-  componentDidMount() {
-    if (this.props.location.state && this.props.location.state.record) {
-      this.formRef.current.setFieldsValue({
-        name: this.props.location.state.record.name,
-        gender: this.props.location.state.record.gender,
-        dob: this.props.location.state.record.dob,
-        class: this.props.location.state.record.class,
-        email: this.props.location.state.record.email,
-      });
-    }
-  }
+  const onReset = () => {
+    formRef.current.resetFields();
+  };
 
-  componentDidUpdate() {
-    // console.log(this.props);
-    if (this.props.propError) {
-      this.setState({ loading: false });
-      message.error("Something went wrong. Unable to save record information.");
-    } else if (this.props.propRecord) {
-      this.setState({ loading: false });
-      // message.success('Success! Record information saved successfully.');
-      this.props.history.push({ pathname: "/records" });
-    }
-  }
+  return (
+    <Row className={classes.FormContainer}>
+      <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+        <Card
+          title="Record Registration Form"
+          bordered={true}
+          className={classes.Form}
+        >
+          {/* ERROR  MESSAGE*/}
+          {error && msg}
 
-  render() {
-    // console.log(this.props);
-    const layout = {
-      labelCol: { span: 8 },
-      wrapperCol: { span: 16 },
-    };
-    const tailLayout = {
-      wrapperCol: {
-        offset: 8,
-        span: 16,
-      },
-    };
-
-    const onFinish = (formdata) => {
-      // console.log('onFinish data : ', formdata);
-      if (
-        this.props.location.state &&
-        this.props.location.state.record &&
-        this.props.location.state.record.key
-      ) {
-        // updateRecord(data);
-        this.setState({ loading: true });
-        this.props.onUpdate({
-          ...formdata,
-          key: this.props.location.state.record.key,
-        });
-      } else {
-        this.setState({ loading: true });
-        this.props.onCreate(formdata);
-      }
-    };
-
-    const onReset = () => {
-      this.formRef.current.resetFields();
-    };
-
-    return (
-      <Row className={classes.FormContainer}>
-        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-          <Card
-            title="Record Registration Form"
-            bordered={true}
-            className={classes.Form}
+          {/* FORM */}
+          <Form
+            name="basic"
+            ref={formRef}
+            name="control-ref"
+            onFinish={onFinish}
           >
-            {/* ERROR  MESSAGE*/}
-            {this.state.error && this.state.message}
-
-            {/* FORM */}
-            <Form
-              name="basic"
-              ref={this.formRef}
-              name="control-ref"
-              onFinish={onFinish}
+            <NumberFormat
+              className="ant-input"
+              thousandSeparator={true}
+              suffix={"đ"}
+              style={{ textAlign: "right" }}
+              value={record.amount}
+              onValueChange={(e) => {
+                setRecord({ ...record, amount: e.floatValue });
+              }}
+            />
+            <br />
+            <DatePicker
+              name="time"
+              onChange={(e) => setRecord({ ...record, time: new Date(e) })}
+              defaultValue={
+                record.time ? moment(record.time, "YYYY-MM-DD") : null
+              }
+            />
+            <br />
+            <Select
+              label="Type"
+              name="type"
+              placeholder="Type"
+              onChange={(e) => {
+                setRecord({ ...record, type: e });
+              }}
             >
-              <Form.Item
-                name="name"
-                rules={[{ required: true, message: "Name is required" }]}
-              >
-                <Input type="text" placeholder="Name" maxLength="50" />
-              </Form.Item>
-              <Form.Item
-                name="dob"
-                rules={[
-                  { required: true, message: "Date of birth is required" },
-                ]}
-              >
-                <Input type="date" />
-              </Form.Item>
-              <Form.Item
-                name="gender"
-                rules={[{ required: true, message: "Gender is required" }]}
-              >
-                <Select label="Gender" placeholder="Gender">
-                  <Select.Option value="Male">Male</Select.Option>
-                  <Select.Option value="Female">Female</Select.Option>
-                </Select>
-              </Form.Item>
-              <Form.Item
-                name="email"
-                rules={[{ required: true, message: "Email is required" }]}
-              >
-                <Input type="email" placeholder="Email" maxLength="50" />
-              </Form.Item>
-              <Form.Item
-                name="class"
-                rules={[{ required: true, message: "Class is required" }]}
-              >
-                <Input type="text" placeholder="Class" maxLength="3" />
-              </Form.Item>
-              <Form.Item style={{ float: "right" }}>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  disabled={this.state.loading}
-                  loading={this.state.loading}
-                >
-                  {this.state.loading ? "Saving.." : "Submit"}
-                </Button>
-                <Button
-                  type="secondary"
-                  htmlType="button"
-                  style={{ marginLeft: "10px" }}
-                  onClick={onReset}
-                >
-                  Reset
-                </Button>
-              </Form.Item>
-            </Form>
-          </Card>
-        </Col>
-      </Row>
-    );
-  }
+              {types.map((e) => (
+                <Select.Option key={e.id} value={e.id}>
+                  {e.name}
+                </Select.Option>
+              ))}
+            </Select>
+            <br />
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={loading}
+              loading={loading}
+            >
+              {loading ? "Saving.." : "Submit"}
+            </Button>
+            <Button
+              type="secondary"
+              htmlType="button"
+              style={{ marginLeft: "10px" }}
+              onClick={onReset}
+            >
+              Reset
+            </Button>
+          </Form>
+        </Card>
+      </Col>
+    </Row>
+  );
 }
 
 const mapStateToProps = (state) => {

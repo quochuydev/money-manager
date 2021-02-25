@@ -35,12 +35,10 @@ export const getRecords = () => {
           // console.log(response.data[key]);
           records.push({
             key: key,
-            name: response.data[key]["name"],
-            dob: response.data[key]["dob"],
-            gender: response.data[key]["gender"],
-            email: response.data[key]["email"],
-            // address: response.data[key]['address'],
-            class: response.data[key]["class"],
+            amount: response.data[key]["amount"],
+            type: response.data[key]["type"],
+            time: response.data[key]["time"],
+            createdAt: response.data[key]["createdAt"],
           });
         }
         dispatch(returnRecords(records, false));

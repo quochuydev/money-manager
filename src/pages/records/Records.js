@@ -15,29 +15,24 @@ export class Records extends React.Component {
             key: 'id'
         }, */
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "Amount",
+      dataIndex: "amount",
+      key: "amount",
     },
     {
-      title: "Gender",
-      dataIndex: "gender",
-      key: "gender",
+      title: "type",
+      dataIndex: "type",
+      key: "type",
     },
     {
-      title: "Date of birth",
-      dataIndex: "dob",
-      key: "dob",
+      title: "time",
+      dataIndex: "time",
+      key: "time",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Class",
-      dataIndex: "class",
-      key: "class",
+      title: "createdAt",
+      dataIndex: "createdAt",
+      key: "createdAt",
     },
     {
       title: "Action",
@@ -80,7 +75,7 @@ export class Records extends React.Component {
   onEdit = (record) => {
     console.log("onEdit", record);
     this.props.history.push({
-      pathname: this.props.match.url + "/record",
+      pathname: "/records/record",
       state: {
         record,
       },
@@ -99,12 +94,6 @@ export class Records extends React.Component {
 
   componentDidUpdate() {
     console.log(this.props);
-
-    // Check if the action results error. Logout if the unauthorized
-    /* if (this.props.propError) {
-            localStorage.clear();
-            this.props.history.push({ pathname: '/login' });
-        } */
   }
 
   render() {
@@ -119,7 +108,7 @@ export class Records extends React.Component {
           Register Record
         </Button>
         <br />
-        <h3>STUDENTS INFORMATION</h3>
+        {/* <h3>Records</h3> */}
         {/* <Table columns={this.cols} dataSource={this.state.records} bordered></Table> */}
         <Table
           columns={this.cols}
