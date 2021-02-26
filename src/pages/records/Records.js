@@ -58,9 +58,8 @@ export class Records extends React.Component {
       key: "type",
       render: (text, record) => (
         <span onClick={() => this.onEdit(record)}>
-          {types.find((e) => e.id == record.type)
-            ? types.find((e) => e.id == record.type)["name"]
-            : null}
+          {/* {JSON.stringify(record)} */}
+          {types.find(e => e.value == record.type) ? types.find(e => e.value == record.type)['title'] : null}
         </span>
       ),
     },

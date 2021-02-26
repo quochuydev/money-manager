@@ -14,7 +14,7 @@ import {
 import * as classes from "./Record.module.scss";
 import { connect } from "react-redux";
 import * as actions from "../../../store/record/actions";
-import { types, treeData } from "../types";
+import {  treeData } from "../types";
 import moment from "moment";
 import NumberFormat from "react-number-format";
 
@@ -114,7 +114,7 @@ function Record(props) {
               ))}
             </Select> */}
             <TreeSelect
-              style={{ width: '100%' }}
+              className="m-t-md w-full"
               value={record.type}
               dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
               treeData={treeData}
