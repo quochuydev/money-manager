@@ -1,5 +1,5 @@
 {
-  "homepage": "http://quochuydev.github.io/money-manager",
+  "homepage": "http://quochuydev.github.io/moneylover",
   "name": "moneylover",
   "version": "0.1.0",
   "private": true,
@@ -29,6 +29,7 @@
     "eject": "react-scripts eject",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "open:coverage": "open .coverage/lcov-report/index.html",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
