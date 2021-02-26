@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/money-manager/static/css/main.857162fc.chunk.css",
-    "main.js": "/money-manager/static/js/main.6cff6bcf.chunk.js",
-    "main.js.map": "/money-manager/static/js/main.6cff6bcf.chunk.js.map",
-    "runtime-main.js": "/money-manager/static/js/runtime-main.b075b75a.js",
-    "runtime-main.js.map": "/money-manager/static/js/runtime-main.b075b75a.js.map",
-    "static/css/2.3e6f8a7d.chunk.css": "/money-manager/static/css/2.3e6f8a7d.chunk.css",
-    "static/js/2.62fd4923.chunk.js": "/money-manager/static/js/2.62fd4923.chunk.js",
-    "static/js/2.62fd4923.chunk.js.map": "/money-manager/static/js/2.62fd4923.chunk.js.map",
-    "index.html": "/money-manager/index.html",
-    "static/css/2.3e6f8a7d.chunk.css.map": "/money-manager/static/css/2.3e6f8a7d.chunk.css.map",
-    "static/css/main.857162fc.chunk.css.map": "/money-manager/static/css/main.857162fc.chunk.css.map",
-    "static/js/2.62fd4923.chunk.js.LICENSE.txt": "/money-manager/static/js/2.62fd4923.chunk.js.LICENSE.txt",
-    "static/media/logo.103b5fa1.svg": "/money-manager/static/media/logo.103b5fa1.svg"
+    "main.css": "/moneylover/static/css/main.060ad25d.chunk.css",
+    "main.js": "/moneylover/static/js/main.d4fb709e.chunk.js",
+    "main.js.map": "/moneylover/static/js/main.d4fb709e.chunk.js.map",
+    "runtime-main.js": "/moneylover/static/js/runtime-main.0bc3476c.js",
+    "runtime-main.js.map": "/moneylover/static/js/runtime-main.0bc3476c.js.map",
+    "static/css/2.3e6f8a7d.chunk.css": "/moneylover/static/css/2.3e6f8a7d.chunk.css",
+    "static/js/2.d2c78be9.chunk.js": "/moneylover/static/js/2.d2c78be9.chunk.js",
+    "static/js/2.d2c78be9.chunk.js.map": "/moneylover/static/js/2.d2c78be9.chunk.js.map",
+    "index.html": "/moneylover/index.html",
+    "static/css/2.3e6f8a7d.chunk.css.map": "/moneylover/static/css/2.3e6f8a7d.chunk.css.map",
+    "static/css/main.060ad25d.chunk.css.map": "/moneylover/static/css/main.060ad25d.chunk.css.map",
+    "static/js/2.d2c78be9.chunk.js.LICENSE.txt": "/moneylover/static/js/2.d2c78be9.chunk.js.LICENSE.txt",
+    "static/media/logo.103b5fa1.svg": "/moneylover/static/media/logo.103b5fa1.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b075b75a.js",
+    "static/js/runtime-main.0bc3476c.js",
     "static/css/2.3e6f8a7d.chunk.css",
-    "static/js/2.62fd4923.chunk.js",
-    "static/css/main.857162fc.chunk.css",
-    "static/js/main.6cff6bcf.chunk.js"
+    "static/js/2.d2c78be9.chunk.js",
+    "static/css/main.060ad25d.chunk.css",
+    "static/js/main.d4fb709e.chunk.js"
   ]
 }
