@@ -1,2 +1,1 @@
-# jsx-learning
-Learning ReactJS application with Antd UI library and firebase backend.
+https://quochuydev.github.io/money-manager/
