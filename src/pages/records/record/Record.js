@@ -9,11 +9,12 @@ import {
   Col,
   message,
   DatePicker,
+  TreeSelect
 } from "antd";
 import * as classes from "./Record.module.scss";
 import { connect } from "react-redux";
 import * as actions from "../../../store/record/actions";
-import { types } from "../types";
+import { types, treeData } from "../types";
 import moment from "moment";
 import NumberFormat from "react-number-format";
 
@@ -96,7 +97,7 @@ function Record(props) {
               }}
             />
             <br />
-            <Select
+            {/* <Select
               className="m-t-md w-full"
               label="Type"
               name="type"
@@ -111,7 +112,18 @@ function Record(props) {
                   {e.name}
                 </Select.Option>
               ))}
-            </Select>
+            </Select> */}
+            <TreeSelect
+              style={{ width: '100%' }}
+              value={record.type}
+              dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+              treeData={treeData}
+              placeholder="Please select"
+              treeDefaultExpandAll
+              onChange={(e) => {
+                setRecord({ ...record, type: e });
+              }}
+            />
             <br />
             <DatePicker
               className="m-t-md w-full"
