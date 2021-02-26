@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/money-manager/static/css/main.7faba6db.chunk.css",
-    "main.js": "/money-manager/static/js/main.f93c8e48.chunk.js",
-    "main.js.map": "/money-manager/static/js/main.f93c8e48.chunk.js.map",
+    "main.css": "/money-manager/static/css/main.857162fc.chunk.css",
+    "main.js": "/money-manager/static/js/main.6cff6bcf.chunk.js",
+    "main.js.map": "/money-manager/static/js/main.6cff6bcf.chunk.js.map",
     "runtime-main.js": "/money-manager/static/js/runtime-main.b075b75a.js",
     "runtime-main.js.map": "/money-manager/static/js/runtime-main.b075b75a.js.map",
-    "static/css/2.1e58ee36.chunk.css": "/money-manager/static/css/2.1e58ee36.chunk.css",
-    "static/js/2.9bf1e974.chunk.js": "/money-manager/static/js/2.9bf1e974.chunk.js",
-    "static/js/2.9bf1e974.chunk.js.map": "/money-manager/static/js/2.9bf1e974.chunk.js.map",
+    "static/css/2.3e6f8a7d.chunk.css": "/money-manager/static/css/2.3e6f8a7d.chunk.css",
+    "static/js/2.62fd4923.chunk.js": "/money-manager/static/js/2.62fd4923.chunk.js",
+    "static/js/2.62fd4923.chunk.js.map": "/money-manager/static/js/2.62fd4923.chunk.js.map",
     "index.html": "/money-manager/index.html",
-    "static/css/2.1e58ee36.chunk.css.map": "/money-manager/static/css/2.1e58ee36.chunk.css.map",
-    "static/css/main.7faba6db.chunk.css.map": "/money-manager/static/css/main.7faba6db.chunk.css.map",
-    "static/js/2.9bf1e974.chunk.js.LICENSE.txt": "/money-manager/static/js/2.9bf1e974.chunk.js.LICENSE.txt",
-    "static/media/logo.2d27ead7.svg": "/money-manager/static/media/logo.2d27ead7.svg"
+    "static/css/2.3e6f8a7d.chunk.css.map": "/money-manager/static/css/2.3e6f8a7d.chunk.css.map",
+    "static/css/main.857162fc.chunk.css.map": "/money-manager/static/css/main.857162fc.chunk.css.map",
+    "static/js/2.62fd4923.chunk.js.LICENSE.txt": "/money-manager/static/js/2.62fd4923.chunk.js.LICENSE.txt",
+    "static/media/logo.103b5fa1.svg": "/money-manager/static/media/logo.103b5fa1.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.b075b75a.js",
-    "static/css/2.1e58ee36.chunk.css",
-    "static/js/2.9bf1e974.chunk.js",
-    "static/css/main.7faba6db.chunk.css",
-    "static/js/main.f93c8e48.chunk.js"
+    "static/css/2.3e6f8a7d.chunk.css",
+    "static/js/2.62fd4923.chunk.js",
+    "static/css/main.857162fc.chunk.css",
+    "static/js/main.6cff6bcf.chunk.js"
   ]
 }
